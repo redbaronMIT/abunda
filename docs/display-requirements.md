@@ -61,6 +61,25 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Supported filters:** Date range, category inclusion/exclusion.
 **Ocean theme:** Water cascading down over a reef ledge.
 
+**Example:**
+```
+CASH FLOW WATERFALL — February 2026
+
+         $0        $1,000    $2,000    $3,000    $4,000
+          ├─────────┼─────────┼─────────┼─────────┤
+Income    ████████████████████████████████████████  +$4,000
+Housing                        ░░░░░░░░░░░░░░░░░░  -$1,100  → $2,900
+Food                                   ░░░░░░░░░░  -$480    → $2,420
+Transport                                    ░░░░  -$195    → $2,225
+Fun                                           ░░░  -$140    → $2,085
+Other                                          ░░  -$280    → $1,805
+          ├─────────┼─────────┼─────────┼─────────┤
+Savings   ████                                      +$400
+Remaining ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  $1,405
+
+💡 Housing consumes 27.5% of income — your largest single expense.
+```
+
 ---
 
 ### 2. Spending Velocity
@@ -70,6 +89,28 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Default data:** Current month, all expense transactions.
 **Supported filters:** Date range, categories.
 **Ocean theme:** A depth gauge descending through the month.
+
+**Example:**
+```
+SPENDING VELOCITY — February 2026
+
+$2,800 ┤                                        ● actual
+$2,400 ┤                              ●
+$2,000 ┤                    ●
+       │             ◦ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─  par line
+$1,600 ┤       ◦
+$1,200 ┤   ●
+       │ ◦
+  $800 ┤
+  $400 ┤
+    $0 └──┼──────────┼──────────┼──────────┼────
+        Feb 1      Feb 8      Feb 15     Feb 22
+
+  ● actual spend    ◦ expected (even) pace
+  ↑ you are $340 ahead of pace with 11 days left
+
+💡 Spending 14% faster than monthly pace — Food & Fun driving the gap.
+```
 
 ---
 
@@ -81,6 +122,33 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Supported filters:** Date range (3, 6, 12 months), category selection.
 **Ocean theme:** A reef wall — each creature is a category, its shape reflects its trend.
 
+**Example:**
+```
+CATEGORY SPARKLINES — Sep 2025 – Feb 2026
+
+┌─────────────────────────┬─────────────────────────┐
+│ 🐚 Housing              │ ⭐ Food                  │
+│ $1,100                  │ $350              $480   │
+│  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │       ╭───╮    ╭──╯     │
+│                         │  ╭────╯   ╰────╯        │
+│ stable                  │  ↑ creeping up 3mo       │
+├─────────────────────────┼─────────────────────────┤
+│ 🐠 Transport            │ 🪸 Fun                   │
+│ $220  ╮                 │ $80       ╭╮    $212     │
+│       ╰─╮ ╭─────────   │      ╰────╯ ╰──────╯     │
+│         ╰─╯             │                          │
+│ stable ✓                │ volatile — spiked Feb    │
+├─────────────────────────┼─────────────────────────┤
+│ 🪨 Other                │ 💰 Savings               │
+│ $300 ─╮   ╭──╮         │ $280        $400         │
+│       ╰───╯  ╰─────    │       ╭─────────╯        │
+│                         │  ╭───╯                   │
+│ variable                │  ↑ improving ✓           │
+└─────────────────────────┴─────────────────────────┘
+
+💡 Food spending has risen 3 months in a row — up $130 since September.
+```
+
 ---
 
 ### 4. Month-over-Month Delta
@@ -90,6 +158,24 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Default data:** Current month vs. prior month, all categories.
 **Supported filters:** Comparison period (last month, 3-month avg, 6-month avg), categories.
 **Ocean theme:** Tide comparison — high tide vs. low tide markers per category.
+
+**Example:**
+```
+MONTH-OVER-MONTH DELTA — Feb vs Jan 2026
+
+             Jan ░   Feb █            Change
+             ──────────────────────────────────────
+Housing      ██████████ ██████████     $0    →  no change
+Food         ████████   ███████████  +$47    ↑  over
+Transport    ████       ████           $0    →  no change
+Fun          ███        ████████     +$62    ↑  over  ⚠
+Other        ██████     ████         -$89    ↓  under ✓
+Savings      ████       █████████   +$120    ↑  good  ✓
+             ──────────────────────────────────────
+             $0   $200  $400  $600  $800  $1,000  $1,200
+
+💡 Fun jumped $62 this month — your biggest unexpected increase.
+```
 
 ---
 
@@ -101,6 +187,26 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Supported filters:** Date range.
 **Ocean theme:** The horizon line between surface and depth — rising means you're surfacing.
 
+**Example:**
+```
+SAVINGS RATE TREND — Mar 2025 – Feb 2026
+
+ 25% ┤                                              ●
+     │                                        ●
+ 20% ┤                              ●    ●
+     │                    ●    ●
+ 15% ┤               ●
+     │          ●
+ 10% ┤ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─  10% goal
+     │ ●
+  5% ┤      ●
+     │
+  0% └──┼────┼────┼────┼────┼────┼────┼────┼────┼────┼────┼──
+       Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec  Jan  Feb
+
+💡 Savings rate has climbed 20 points over the year — above your 10% goal.
+```
+
 ---
 
 ### 6. Budget Variance
@@ -110,6 +216,22 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Default data:** Current month, all categories.
 **Supported filters:** Date range, categories, show only over-budget / under-budget.
 **Ocean theme:** Sonar readings — distance from target shown as echo depth.
+
+**Example:**
+```
+BUDGET VARIANCE — February 2026  (sorted by variance)
+
+             Budget    Actual    Bar (░ = budget, █ = actual)   Δ
+             ────────────────────────────────────────────────────────
+Fun          $150      $212      ░░░░░░░░░░████████████████     +$62 ⚠ OVER
+Food         $500      $480      ░░░░░░░░░░░░░░░░░░░████████    -$20 ✓
+Transport    $200      $195      ░░░░░░░░░░████████              -$5  ✓
+Housing      $1,200    $1,100    ░░░░░░░░░░░░░░░░░░░░████████  -$100 ✓
+Other        $300      $211      ░░░░░░░░░░░░░████████          -$89 ✓
+Savings      $400      $520      ░░░░░░░░░░░░████████████████  +$120 ✓ good
+
+💡 Fun is your only over-budget category — $62 over with 11 days remaining.
+```
 
 ---
 
@@ -121,6 +243,28 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Supported filters:** Date range.
 **Ocean theme:** Surface vs. underwater — income is above the waterline, spending is below.
 
+**Example:**
+```
+INCOME VS. SPENDING — Sep 2025 – Feb 2026
+
+$5,000 ┤
+$4,500 ┤
+$4,000 ┤ ▓  ▓  ▓  ▓  ▓  ▓     ← income (~$4,000 each month)
+       │ ▓  ▓  ▓  ▓  ▓  ▓
+$3,000 ┤ ▓  ▓  ▓  ▓  ▓  ▓
+       │ █  █  █  █  █  █
+$2,000 ┤ █  █  █  █  █  █     ← spending (growing slightly)
+       │ █  █  █  █  █  █
+$1,000 ┤ █  █  █  █  █  █
+       │
+    $0 └─┼──┼──┼──┼──┼──┼─
+        Sep Oct Nov Dec Jan Feb
+
+  ▓ income   █ spending   gap = saved each month
+
+💡 Positive gap every month — spending crept up $180 since September.
+```
+
 ---
 
 ### 8. Spending Breakdown (Pie / Treemap)
@@ -130,6 +274,23 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Default data:** Current month, expense transactions only.
 **Supported filters:** Date range, categories, chart type (pie or treemap).
 **Ocean theme:** A cross-section of the ocean floor — each zone is a category.
+
+**Example:**
+```
+SPENDING BREAKDOWN — February 2026
+
+  Pie view                     Treemap view
+                               ┌───────────────────┬────────┬─────┐
+      🔵 Housing 41%           │                   │        │     │
+  🟢 Food 18%                  │   Housing  41%    │ Food   │Other│
+    🟠 Savings 15%             │                   │  18%   │ 8%  │
+      🟣 Fun 8%                ├───────────────────┼────────┼─────┤
+    🟡 Other 8%                │ Savings 15%       │Trnsp   │ Fun │
+   🔴 Transport 7%             │                   │  7%    │ 8%  │
+  (excludes Savings)           └───────────────────┴────────┴─────┘
+
+💡 Housing + Food account for 59% of all spending.
+```
 
 ---
 
@@ -141,6 +302,21 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Supported filters:** Date range, categories (filter to one category to see its pattern).
 **Ocean theme:** Bioluminescence — bright spots are high-activity days.
 
+**Example:**
+```
+TRANSACTION HEATMAP — February 2026
+
+      Mon   Tue   Wed   Thu   Fri   Sat   Sun
+W1    [ ]   [░]   [ ]   [░]   [▓]   [█]   [ ]
+W2    [░]   [ ]   [░]   [ ]   [▓]   [▓]   [░]
+W3    [ ]   [░]   [░]   [░]   [█]   [▓]   [ ]
+W4    [░]   [░]   [ ]   [▓]   [▓]   [█]   [ ]
+
+  [ ] $0      [░] $1–50      [▓] $51–150      [█] $150+
+
+💡 Fridays and Saturdays account for 58% of your monthly spending.
+```
+
 ---
 
 ### 10. Net Flow Summary (Scorecard)
@@ -150,6 +326,26 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Default data:** Current month.
 **Supported filters:** Date range.
 **Ocean theme:** The captain's log — a clean numerical readout.
+
+**Example:**
+```
+NET FLOW SUMMARY — February 2026
+
+  ╔══════════════════════════════════════╗
+  ║  Effective Income         $4,000.00  ║
+  ║  Total Spent             -$2,298.00  ║
+  ║  Total Saved               -$520.00  ║
+  ║                           ─────────  ║
+  ║  Remaining                $1,182.00  ║
+  ╠══════════════════════════════════════╣
+  ║  Savings Rate                 13.0%  ║
+  ║  Spending Rate                57.5%  ║
+  ║  Days Elapsed (17/28)         60.7%  ║
+  ║  Status                  ✓ ON TRACK  ║
+  ╚══════════════════════════════════════╝
+
+💡 On track with 11 days left and $1,182 remaining.
+```
 
 ---
 
