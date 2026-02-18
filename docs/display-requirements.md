@@ -27,12 +27,14 @@ Guiding principles (Tufte + Few):
 ## The Under the Sea Room
 
 ### Layout
+
 - A scrollable, grid-based canvas (CSS Grid)
 - Panels can be resized and reordered (drag-to-rearrange, v2)
 - A persistent "+ Add Panel" button opens the visualization picker
 - Each panel has: title (editable), the visualization, and a filter/settings drawer
 
 ### Panel anatomy
+
 ```
 ┌─────────────────────────────────────┐
 │ Panel Title              [⚙ filters]│
@@ -44,14 +46,15 @@ Guiding principles (Tufte + Few):
 ```
 
 The **insight callout** is a one-line plain-English summary auto-generated from the data.
-Example: *"Food spending has increased 3 months in a row."*
-Example: *"You're 12% ahead of spending pace for this month."*
+Example: _"Food spending has increased 3 months in a row."_
+Example: _"You're 12% ahead of spending pace for this month."_
 
 ---
 
 ## Visualization Types
 
 ### 1. Cash Flow Waterfall
+
 **What it shows:** Where your money goes — income as the starting bar, each spending category as a step down, savings as what remains.
 **Why it's insightful:** Makes proportions and sequencing obvious. You see immediately which category consumes the most and what's left over.
 **Default data:** Current month, all categories, income vs. expense.
@@ -61,6 +64,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 2. Spending Velocity
+
 **What it shows:** Cumulative spending over the month (actual line) vs. a "par line" (what even daily spending would look like).
 **Why it's insightful:** One glance shows if you're ahead or behind pace. A steep early curve = front-loaded spending. Flat middle + steep end = big purchases coming.
 **Default data:** Current month, all expense transactions.
@@ -70,6 +74,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 3. Category Sparklines (Small Multiples)
+
 **What it shows:** A grid where every category gets its own mini trend line — last N months of spending.
 **Why it's insightful:** You scan the whole grid in seconds and spot the category that's been quietly creeping upward. Individual charts would take minutes.
 **Default data:** Last 6 months, all categories.
@@ -79,6 +84,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 4. Month-over-Month Delta
+
 **What it shows:** Bar chart of spending per category this month vs. last month (or vs. N-month average). Bars are colored by direction (over/under).
 **Why it's insightful:** Context transforms numbers into signals. "$320 on food" is meaningless. "$47 more than last month" is actionable.
 **Default data:** Current month vs. prior month, all categories.
@@ -88,6 +94,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 5. Savings Rate Trend
+
 **What it shows:** A single line chart of savings rate (%) month by month.
 **Why it's insightful:** The most important single financial health metric. Trends matter more than any individual month.
 **Default data:** Last 12 months.
@@ -97,6 +104,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 6. Budget Variance
+
 **What it shows:** Actual vs. budgeted per category, sorted by largest variance (over or under). A bullet chart or horizontal bar.
 **Why it's insightful:** Shows you exactly where your plan broke down and by how much. Sorted by variance = most important problems first.
 **Default data:** Current month, all categories.
@@ -106,6 +114,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 7. Income vs. Spending Over Time
+
 **What it shows:** Grouped or stacked area chart — income bars and spending bars side by side per month.
 **Why it's insightful:** Reveals structural surplus or deficit patterns. Are you consistently spending less than you earn, or are some months underwater?
 **Default data:** Last 6 months.
@@ -115,6 +124,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 8. Spending Breakdown (Pie / Treemap)
+
 **What it shows:** Proportional breakdown of spending by category. User can pick pie chart (familiar) or treemap (more accurate for comparison).
 **Why it's insightful:** Simple but useful as a sanity check on category proportions.
 **Default data:** Current month, expense transactions only.
@@ -124,6 +134,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 9. Transaction Heatmap
+
 **What it shows:** A calendar heatmap — each day colored by spend intensity. Like GitHub's contribution graph.
 **Why it's insightful:** Reveals behavioral patterns — weekend splurges, end-of-month spending, payday reactions.
 **Default data:** Current month. Can expand to 3 months.
@@ -133,6 +144,7 @@ Example: *"You're 12% ahead of spending pace for this month."*
 ---
 
 ### 10. Net Flow Summary (Scorecard)
+
 **What it shows:** A compact set of key metrics: effective income, total spent, total saved, remaining, savings rate, on-track status.
 **Why it's insightful:** A dense single-panel summary — for users who just want the numbers.
 **Default data:** Current month.
@@ -145,13 +157,14 @@ Example: *"You're 12% ahead of spending pace for this month."*
 
 Users can also create panels using generic chart builders:
 
-| Type | Use case |
-|---|---|
-| Bar chart | Comparing values across categories or time periods |
-| Line chart | Trends over time for one or more series |
-| Pie chart | Proportional breakdown (simple, familiar) |
+| Type       | Use case                                           |
+| ---------- | -------------------------------------------------- |
+| Bar chart  | Comparing values across categories or time periods |
+| Line chart | Trends over time for one or more series            |
+| Pie chart  | Proportional breakdown (simple, familiar)          |
 
 For each generic chart, the user:
+
 1. Picks a data series (e.g. "Food spending by month", "Income vs. expenses")
 2. Picks a chart type
 3. Optionally applies filters
@@ -164,15 +177,16 @@ Filters are optional and additive. Each panel starts with its smart defaults and
 
 ### Available filters
 
-| Filter | Type | Options |
-|---|---|---|
-| Date range | Select | Current month, Last 3 months, Last 6 months, Last 12 months, Custom range |
-| Categories | Multi-select | Any combination of user's categories |
-| Transaction type | Select | Expenses only, Income only, Both |
-| Comparison period | Select | Prior month, 3-month average, 6-month average (where applicable) |
-| Chart type | Select | Pie or Treemap (Breakdown panel only) |
+| Filter            | Type         | Options                                                                   |
+| ----------------- | ------------ | ------------------------------------------------------------------------- |
+| Date range        | Select       | Current month, Last 3 months, Last 6 months, Last 12 months, Custom range |
+| Categories        | Multi-select | Any combination of user's categories                                      |
+| Transaction type  | Select       | Expenses only, Income only, Both                                          |
+| Comparison period | Select       | Prior month, 3-month average, 6-month average (where applicable)          |
+| Chart type        | Select       | Pie or Treemap (Breakdown panel only)                                     |
 
 ### Filter UX
+
 - Filters live in a collapsible drawer on each panel (the ⚙ icon)
 - Active filters are shown as small chips below the panel title
 - Resetting returns to smart defaults
@@ -230,11 +244,11 @@ New visualization types can be added to the registry without changing the data m
 
 ## Ocean Theme — Visual Language
 
-| Depth zone | Represents | Visual style |
-|---|---|---|
-| Sunlight zone (0–200m) | Current month data | Bright, high contrast, warm tones |
-| Twilight zone (200–1000m) | Recent history (last 3–6 months) | Cooler blues, softer contrast |
-| Midnight zone (1000m+) | Long-term history (6–12+ months) | Deep blues, bioluminescent highlights |
+| Depth zone                | Represents                       | Visual style                          |
+| ------------------------- | -------------------------------- | ------------------------------------- |
+| Sunlight zone (0–200m)    | Current month data               | Bright, high contrast, warm tones     |
+| Twilight zone (200–1000m) | Recent history (last 3–6 months) | Cooler blues, softer contrast         |
+| Midnight zone (1000m+)    | Long-term history (6–12+ months) | Deep blues, bioluminescent highlights |
 
 - Scrolling down the canvas = diving deeper (older data)
 - Panel backgrounds shift in color as the user scrolls
@@ -246,6 +260,7 @@ New visualization types can be added to the registry without changing the data m
 ## Extensibility
 
 New visualization types are added by:
+
 1. Writing the chart component (JS + CSS)
 2. Adding an entry to the visualization registry
 3. No changes to the data model or filter system required

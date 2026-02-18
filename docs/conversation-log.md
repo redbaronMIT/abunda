@@ -10,6 +10,7 @@
 **User:** Reminded me where we left off on the takeoutncode project.
 
 **Claude:** Reviewed the git history:
+
 - **Branch:** `feat/retro-terminal-ui` (clean working tree)
 - Recent commits:
   1. `48bb954` — Apply Prettier formatting and add commit guidelines
@@ -25,6 +26,7 @@
 **User:** Asked how to start a new project and keep some of the useful things from takeoutncode.
 
 **Claude:** Identified reusable pieces:
+
 - `package.json` — Vite, ESLint, Prettier, Husky scripts
 - `.eslintrc.*` / `eslint.config.js` — lint rules
 - `.prettierrc` — formatting settings
@@ -32,6 +34,7 @@
 - `CLAUDE.md` — adapted for the new project
 
 Suggested approaches:
+
 1. Create a fresh repo, copy config files, run `npm install`
 2. Make a lightweight template directory
 3. Start fresh with `npm create vite@latest`, then copy configs
@@ -45,6 +48,7 @@ Suggested approaches:
 **Claude:** Asked clarifying questions about features, game elements, data storage, and tech stack.
 
 **User:** Clarified:
+
 - Focus on interacting with the interface in a game-like way
 - Figure out "gamification" aspects later
 - Visual/animated interactions (drag-and-drop, animated progress bars, satisfying transitions)
@@ -53,6 +57,7 @@ Suggested approaches:
 - Tech stack: help me decide
 
 **Claude:** Recommended vanilla JS + Vite + CSS:
+
 - Already familiar from the translation app
 - Forces learning fundamentals that transfer to any framework
 - CSS animations are powerful enough for the visual/animated feel
@@ -63,6 +68,7 @@ Suggested approaches:
 ## Architecture Exploration — Treehouse Village (Rejected)
 
 **Claude** initially proposed a **treehouse village** narrative:
+
 - Each savings goal = a treehouse being built
 - Budget health = forest weather
 - Trees grow as finances improve
@@ -74,17 +80,20 @@ Suggested approaches:
 ## Architecture — Beach/Ocean Theme (Accepted)
 
 **User:** Described the vision:
+
 > The app shall be beach/ocean themed. Abundance is modeled by walking along the shore and there are so many shells and "sand dollars" to pick up! Key "rooms" of the application/game: a room with baskets where you can "sort your shells" into baskets (representing budgeting), a room that is the cockpit of a fishing boat with dials and switches and gauges to see how your accounts and money is doing (representing awareness), and another room to be determined that allows for planning.
 
 **Claude** interpreted the rooms:
 
 ### The Shore (Home/Landing)
+
 - Animated beach scene — waves, sand, scattered shells
 - Quick financial snapshot (income this month, total saved)
 - Entry point to the three rooms
 - The beach gets more lush with shells as finances improve
 
 ### Room 1: The Sorting Room (Budgeting)
+
 - A room with woven baskets on a wooden table/shelf
 - Each basket = a budget category (Housing, Food, Transport, etc.)
 - Shells represent money to allocate — distribute them into baskets
@@ -92,6 +101,7 @@ Suggested approaches:
 - Add transactions here (expenses go into category baskets)
 
 ### Room 2: The Cockpit (Awareness/Dashboard)
+
 - Fishing boat cockpit with analog instruments
 - **Fuel gauge** — savings level (empty to full)
 - **Speedometer** — spending rate (how fast burning through budget)
@@ -101,6 +111,7 @@ Suggested approaches:
 - All dials/gauges are CSS-drawn and animated
 
 ### Room 3: TBD (Planning)
+
 - To be designed later
 - Possible concepts: captain's quarters with maps, lighthouse with telescope, navigation chart table
 - Will handle savings goals, future planning, projections
@@ -112,6 +123,7 @@ Suggested approaches:
 ## Tech Stack & Tooling
 
 Carried over from takeoutncode (minus tailwindcss):
+
 - **Vite 6.x** — dev server, build
 - **ESLint 9.x** (flat config) — eqeqeq error, curly error, no-console off, no-unused-vars warn, no-undef error
 - **Prettier** — single quotes, 2-space indent, semicolons, trailing commas es5, 100 char width
@@ -200,6 +212,7 @@ localStorage key: `abunda-data`
 ## Onboarding (first-time only)
 
 3 steps with animated transitions:
+
 1. **Welcome** — "Welcome to Abunda" with animated waves washing shells onto shore
 2. **Set budget** — Monthly income + spending budget inputs
 3. **Name your baskets** — Confirm or customize 5 default budget categories

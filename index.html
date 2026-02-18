@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Abunda</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Onboarding (first visit only, full screen) -->
+    <div id="view-onboarding" class="view" aria-hidden="true"></div>
+
+    <!-- Shore (home) -->
+    <div id="view-shore" class="view" aria-hidden="true"></div>
+
+    <!-- Sorting Room -->
+    <div id="view-sorting-room" class="view" aria-hidden="true"></div>
+
+    <!-- Cockpit -->
+    <div id="view-cockpit" class="view" aria-hidden="true"></div>
+
+    <!-- Bottom Tab Bar (hidden during onboarding) -->
+    <nav id="tab-bar" class="tab-bar is-hidden" aria-hidden="true">
+      <button class="tab-btn" data-view="shore" aria-label="Shore">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 20 Q12 4 21 20" />
+            <path d="M1 20 H23" />
+          </svg>
+        </span>
+        <span class="tab-label">Shore</span>
+      </button>
+      <button class="tab-btn" data-view="sorting-room" aria-label="Baskets">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 L3 8 H21 L18 2" />
+            <path d="M3 8 Q3 20 12 20 Q21 20 21 8" />
+            <path d="M8 2 L10 8" />
+            <path d="M16 2 L14 8" />
+          </svg>
+        </span>
+        <span class="tab-label">Baskets</span>
+      </button>
+      <button class="tab-btn" data-view="cockpit" aria-label="Cockpit">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="3" />
+            <line x1="12" y1="3" x2="12" y2="6" />
+            <line x1="12" y1="18" x2="12" y2="21" />
+            <line x1="3" y1="12" x2="6" y2="12" />
+            <line x1="18" y1="12" x2="21" y2="12" />
+          </svg>
+        </span>
+        <span class="tab-label">Cockpit</span>
+      </button>
+    </nav>
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

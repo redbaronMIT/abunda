@@ -7,13 +7,13 @@
 
 ## Core Decisions
 
-| Topic | Decision |
-|---|---|
-| Income model | Base monthly income + optional logged income transactions |
-| Budget period | Current calendar month (resets on the 1st) |
-| Savings model | Savings is a budget category ("pay yourself first") |
-| Recurring transactions | Forecasted only — actuals are always manually logged |
-| Future path | Zero-based budgeting (all income allocated = $0 remainder) |
+| Topic                  | Decision                                                   |
+| ---------------------- | ---------------------------------------------------------- |
+| Income model           | Base monthly income + optional logged income transactions  |
+| Budget period          | Current calendar month (resets on the 1st)                 |
+| Savings model          | Savings is a budget category ("pay yourself first")        |
+| Recurring transactions | Forecasted only — actuals are always manually logged       |
+| Future path            | Zero-based budgeting (all income allocated = $0 remainder) |
 
 ---
 
@@ -29,18 +29,21 @@
 ## 2. Income
 
 ### 2a. Base Monthly Income
+
 - Set during onboarding and editable in settings
 - Represents the user's expected total income for the month
 - Used as the denominator for all percentage-based calculations (gauge fill levels, etc.)
 - Stored as `budget.monthlyIncome` (number, in dollars)
 
 ### 2b. Income Transactions
+
 - Users may log additional income events: freelance pay, side income, gifts, tax refunds, etc.
 - Stored in `transactions[]` with `type: 'income'`
 - **Effective monthly income** = `budget.monthlyIncome` + sum of income transactions this month
 - The Shore and Cockpit use **effective monthly income** for all calculations
 
 ### Income transaction fields
+
 ```
 id          — unique ID (e.g. 'txn_abc123')
 type        — 'income'
@@ -63,6 +66,7 @@ createdAt   — ISO 8601 timestamp
   - (Future: zero-based mode enforces `sum(categories) == monthlyIncome`)
 
 ### Category fields
+
 ```
 id            — unique ID (e.g. 'cat_savings')
 name          — display name (e.g. 'Savings', 'Housing')
@@ -73,14 +77,15 @@ isSavings     — boolean, true only for the savings category
 ```
 
 ### Default categories (onboarding)
-| Name | Icon | Default Amount |
-|---|---|---|
-| Savings | sand-dollar | $400 |
-| Housing | shell | $1,200 |
-| Food | starfish | $500 |
-| Transport | seahorse | $200 |
-| Fun | coral | $150 |
-| Other | pebble | $300 |
+
+| Name      | Icon        | Default Amount |
+| --------- | ----------- | -------------- |
+| Savings   | sand-dollar | $400           |
+| Housing   | shell       | $1,200         |
+| Food      | starfish    | $500           |
+| Transport | seahorse    | $200           |
+| Fun       | coral       | $150           |
+| Other     | pebble      | $300           |
 
 ---
 
@@ -91,6 +96,7 @@ isSavings     — boolean, true only for the savings category
 - Logging an expense to Savings means that money has been intentionally set aside
 
 ### Expense transaction fields
+
 ```
 id          — unique ID
 type        — 'expense'
@@ -102,6 +108,7 @@ createdAt   — ISO 8601 timestamp
 ```
 
 ### Business rules
+
 - Amount must be > 0
 - Category must exist at time of logging
 - Date must be within the current calendar month (v1 — no backdating to prior months)
@@ -115,6 +122,7 @@ Recurring forecasts represent expected future expenses (rent, subscriptions, etc
 They are **not transactions** — they live in a separate `forecasts[]` array.
 
 ### How forecasts work
+
 - User defines a recurring item: name, amount, category, frequency, next due date
 - The Planning Room (Room 3) displays upcoming forecasts on a timeline
 - The Cockpit can show forecast-adjusted projections (e.g. "projected remaining after bills")
@@ -123,6 +131,7 @@ They are **not transactions** — they live in a separate `forecasts[]` array.
 - (Future: the app may prompt "Your rent forecast is due — log it now?")
 
 ### Forecast fields
+
 ```
 id            — unique ID
 name          — label (e.g. 'Rent', 'Netflix')
@@ -134,6 +143,7 @@ active        — boolean
 ```
 
 ### Forecast-derived calculations
+
 - **Forecasted spending this month** = sum of forecast amounts due in current month
 - **Unforecasted spending** = actual spending − forecasted spending (what wasn't planned)
 - **Projected end-of-month balance** = effective income − actual spending so far − remaining forecasts due
@@ -145,6 +155,7 @@ active        — boolean
 These power the visual states across all three rooms.
 
 ### Month-to-date values
+
 ```
 effectiveIncome       = monthlyIncome + sum(income transactions this month)
 totalSpent            = sum(expense transactions this month, excluding savings category)
@@ -154,6 +165,7 @@ remainingBudget       = effectiveIncome − totalAllocated
 ```
 
 ### Per-category values
+
 ```
 categorySpent(cat)    = sum(expense transactions this month where categoryId == cat.id)
 categoryRemaining(cat)= cat.budgetAmount − categorySpent(cat)   // can be negative (overflow)
@@ -161,6 +173,7 @@ categoryFillPct(cat)  = categorySpent(cat) / cat.budgetAmount   // can exceed 1.
 ```
 
 ### Health metrics (used by Shore + Cockpit)
+
 ```
 savingsRate           = totalSaved / effectiveIncome             // 0.0–1.0+
 spendingRate          = totalSpent / effectiveIncome             // 0.0–1.0+
@@ -170,6 +183,7 @@ onTrack               = budgetUsedPct <= daysElapsedPct          // boolean
 ```
 
 ### Projected end-of-month
+
 ```
 projectedSpend        = totalSpent + sum(remaining forecasts due this month)
 projectedSavings      = effectiveIncome − projectedSpend − totalSaved
@@ -180,22 +194,22 @@ projectedSurplus      = effectiveIncome − projectedSpend − cat_savings.budge
 
 ## 7. Cockpit Gauge Mappings
 
-| Instrument | Measures | Source value | Range |
-|---|---|---|---|
-| Fuel gauge | Savings level | `savingsRate` | 0% (empty) → 25%+ (full) |
-| Speedometer | Spending rate | `spendingRate` | 0% (stopped) → 100%+ (redline) |
-| Compass | On track? | `onTrack` | Points to N (on course) or swings off |
+| Instrument  | Measures            | Source value              | Range                                  |
+| ----------- | ------------------- | ------------------------- | -------------------------------------- |
+| Fuel gauge  | Savings level       | `savingsRate`             | 0% (empty) → 25%+ (full)               |
+| Speedometer | Spending rate       | `spendingRate`            | 0% (stopped) → 100%+ (redline)         |
+| Compass     | On track?           | `onTrack`                 | Points to N (on course) or swings off  |
 | Status LEDs | Per-category health | `categoryFillPct` per cat | Green < 75%, Yellow 75–99%, Red ≥ 100% |
 
 ---
 
 ## 8. Shore Visual Mappings
 
-| Visual | Reflects | Logic |
-|---|---|---|
-| Shell density on beach | Overall financial health | More shells = higher `remainingBudget / effectiveIncome` |
-| Wave energy | Spending activity this month | More transactions = more active waves |
-| Sand dollar appearance | Savings milestone | Appears when `savingsRate >= 0.10` (10% saved) |
+| Visual                 | Reflects                     | Logic                                                    |
+| ---------------------- | ---------------------------- | -------------------------------------------------------- |
+| Shell density on beach | Overall financial health     | More shells = higher `remainingBudget / effectiveIncome` |
+| Wave energy            | Spending activity this month | More transactions = more active waves                    |
+| Sand dollar appearance | Savings milestone            | Appears when `savingsRate >= 0.10` (10% saved)           |
 
 ---
 
@@ -256,6 +270,7 @@ projectedSurplus      = effectiveIncome − projectedSpend − cat_savings.budge
 ## 10. Future: Zero-Based Budgeting
 
 When ready to add zero-based mode:
+
 - Add a setting: `budget.mode: 'standard' | 'zero-based'`
 - In zero-based mode, enforce: `sum(category.budgetAmount) == budget.monthlyIncome`
 - Onboarding and the budget editor show a running "unallocated" balance

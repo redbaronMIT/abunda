@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#1a3350"/>
+  <!-- Nautilus shell -->
+  <path d="M16 5 C23 5 27 10 27 16 C27 22 22 26 16 26 C11 26 7 23 6 19 L16 16 Z" fill="#f0c060"/>
+  <path d="M16 16 L6 19 C5 17 5 14 6 12 C8 8 11 5 16 5 Z" fill="#d4a040"/>
+  <path d="M16 16 C20 13 23 14 24 16 C23 19 20 21 16 21 Z" fill="#f5d680"/>
+  <path d="M16 16 C17.5 14.5 19 15 19.5 16 C19 17.5 17.5 18 16 17.5 Z" fill="#1a3350" opacity="0.6"/>
+  <circle cx="16" cy="16" r="1.5" fill="#1a3350"/>
+</svg>
