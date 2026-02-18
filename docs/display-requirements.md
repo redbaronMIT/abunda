@@ -62,6 +62,7 @@ Example: _"You're 12% ahead of spending pace for this month."_
 **Ocean theme:** Water cascading down over a reef ledge.
 
 **Example:**
+
 ```
 CASH FLOW WATERFALL — February 2026
 
@@ -91,6 +92,7 @@ Remaining ░░░░░░░░░░░░░░░░░░░░░░░�
 **Ocean theme:** A depth gauge descending through the month.
 
 **Example:**
+
 ```
 SPENDING VELOCITY — February 2026
 
@@ -123,6 +125,7 @@ $1,200 ┤   ●
 **Ocean theme:** A reef wall — each creature is a category, its shape reflects its trend.
 
 **Example:**
+
 ```
 CATEGORY SPARKLINES — Sep 2025 – Feb 2026
 
@@ -160,6 +163,7 @@ CATEGORY SPARKLINES — Sep 2025 – Feb 2026
 **Ocean theme:** Tide comparison — high tide vs. low tide markers per category.
 
 **Example:**
+
 ```
 MONTH-OVER-MONTH DELTA — Feb vs Jan 2026
 
@@ -188,6 +192,7 @@ Savings      ████       █████████   +$120    ↑  good
 **Ocean theme:** The horizon line between surface and depth — rising means you're surfacing.
 
 **Example:**
+
 ```
 SAVINGS RATE TREND — Mar 2025 – Feb 2026
 
@@ -218,6 +223,7 @@ SAVINGS RATE TREND — Mar 2025 – Feb 2026
 **Ocean theme:** Sonar readings — distance from target shown as echo depth.
 
 **Example:**
+
 ```
 BUDGET VARIANCE — February 2026  (sorted by variance)
 
@@ -244,6 +250,7 @@ Savings      $400      $520      ░░░░░░░░░░░░███�
 **Ocean theme:** Surface vs. underwater — income is above the waterline, spending is below.
 
 **Example:**
+
 ```
 INCOME VS. SPENDING — Sep 2025 – Feb 2026
 
@@ -276,6 +283,7 @@ $1,000 ┤ █  █  █  █  █  █
 **Ocean theme:** A cross-section of the ocean floor — each zone is a category.
 
 **Example:**
+
 ```
 SPENDING BREAKDOWN — February 2026
 
@@ -303,6 +311,7 @@ SPENDING BREAKDOWN — February 2026
 **Ocean theme:** Bioluminescence — bright spots are high-activity days.
 
 **Example:**
+
 ```
 TRANSACTION HEATMAP — February 2026
 
@@ -328,6 +337,7 @@ W4    [░]   [░]   [ ]   [▓]   [▓]   [█]   [ ]
 **Ocean theme:** The captain's log — a clean numerical readout.
 
 **Example:**
+
 ```
 NET FLOW SUMMARY — February 2026
 
