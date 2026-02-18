@@ -145,9 +145,28 @@ See `docs/display-requirements.md` for all visualization types, filter options, 
 ESLint: eqeqeq error, curly error, no-console off, no-unused-vars warn, no-undef error
 Prettier: single quotes, 2-space indent, semicolons, trailing commas es5, 100 char width
 
-## Pre-commit Hook
+## Branching Workflow
 
-Husky runs `npm run format` then `npm run lint` before commits.
+All changes must go through a branch and PR — direct pushes to `main` are blocked both locally (Husky pre-push hook) and on GitHub (branch protection).
+
+```bash
+git checkout -b feat/my-feature   # create a branch
+# ... make changes, commit ...
+git push -u origin feat/my-feature
+gh pr create                      # open a PR
+gh pr merge --squash              # merge when ready
+```
+
+Branch naming conventions:
+- `feat/` — new features
+- `fix/` — bug fixes
+- `docs/` — documentation only
+
+## Git Hooks
+
+Husky runs on two events:
+- **pre-commit**: `npm run format` then `npm run lint`
+- **pre-push**: format + lint, then blocks push if on `main`
 
 ## File Length Guidelines
 

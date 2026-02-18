@@ -1,0 +1,11 @@
+npm run format
+npm run lint
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$branch" = "main" ]; then
+  echo ""
+  echo "Direct push to main is not allowed."
+  echo "Create a branch and open a PR instead."
+  echo ""
+  exit 1
+fi
