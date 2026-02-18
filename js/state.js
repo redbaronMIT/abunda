@@ -4,10 +4,10 @@ const STORAGE_KEY = 'abunda-data';
 
 const DEFAULT_CATEGORIES = [
   { id: 'cat_housing', name: 'Housing', color: '#60a5fa', icon: 'shell', budgetAmount: 0 },
+  { id: 'cat_saving', name: 'Saving', color: '#f0c060', icon: 'sand-dollar', budgetAmount: 0 },
   { id: 'cat_food', name: 'Food', color: '#4ade80', icon: 'starfish', budgetAmount: 0 },
-  { id: 'cat_transport', name: 'Transport', color: '#facc15', icon: 'seahorse', budgetAmount: 0 },
+  { id: 'cat_transport', name: 'Transport', color: '#22d3ee', icon: 'seahorse', budgetAmount: 0 },
   { id: 'cat_fun', name: 'Fun', color: '#c084fc', icon: 'coral', budgetAmount: 0 },
-  { id: 'cat_other', name: 'Other', color: '#94a3b8', icon: 'pebble', budgetAmount: 0 },
 ];
 
 function createDefaultState() {
