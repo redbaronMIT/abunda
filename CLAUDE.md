@@ -9,11 +9,22 @@ Abunda is a financial budgeting and planning tool with a beach/ocean theme. Abun
 Your finances are a walk along the shore. Money coming in = shells and sand dollars washing up. The app is organized into "rooms", each a distinct interactive experience:
 
 - **The Shore (Home)** — Animated beach scene with waves and scattered shells. Quick financial snapshot. Shell density reflects financial health.
-- **The Sorting Room (Budgeting)** — Woven baskets on shelves. Each basket = a budget category. Adding expenses drops shells into baskets. Baskets fill up and overflow if over-budget.
-- **The Cockpit (Awareness)** — Fishing boat cockpit with CSS-drawn analog instruments: fuel gauge (savings), speedometer (spending rate), compass (on-track/off-track), toggle switches (time periods), status LEDs (per category).
-- **Room 3 (Planning)** — TBD. Will handle savings goals, future planning, projections.
+- **The Sorting Room (Budgeting)** — Woven baskets on shelves. Each basket = a budget category (including a required Savings basket). Adding expenses drops shells into baskets. Baskets fill up and overflow if over-budget.
+- **The Cockpit (Awareness)** — Fishing boat cockpit with CSS-drawn analog instruments: fuel gauge (savings rate), speedometer (spending rate), compass (on-track/off-track), toggle switches (time periods), status LEDs (per category).
+- **Under the Sea (Exploration)** — User-composable data exploration space. Ocean depth = data depth. Users build a personal dashboard from a registry of insight-first visualizations (waterfall, sparklines, velocity, variance, etc.) with optional filters. Each panel includes a plain-English insight callout.
+- **Room 3 (Planning)** — TBD. Will handle savings goals, future planning, projections using forecast data.
 
 Navigation: bottom tab bar (future upgrade: animated "walking" between rooms).
+
+## Financial Model
+
+See `docs/financial-requirements.md` for full detail. Key decisions:
+
+- **Budget period**: Current calendar month (resets on the 1st). No rollover.
+- **Income**: Base monthly income (set in onboarding) + optional logged income transactions. Effective income = base + income transactions this month.
+- **Savings**: A required budget category ("pay yourself first"). Cannot be deleted. The cockpit fuel gauge reflects savings rate.
+- **Recurring**: Stored as `forecasts[]` — never auto-post. Actuals are always manually logged. Forecasts inform the Planning room and Cockpit projections.
+- **Future**: Zero-based budgeting mode (all income allocated = $0 remainder) is a planned addition requiring no schema changes.
 
 ## Commands
 
@@ -35,6 +46,8 @@ js/views.js            — View manager (show/hide views, tab navigation)
 js/shore.js            — Shore view (beach scene, financial snapshot)
 js/sorting-room.js     — Sorting room (transaction form, baskets, history)
 js/cockpit.js          — Cockpit (gauge calculations, dial rendering)
+js/under-the-sea.js    — Under the Sea (dashboard composition, panel rendering)
+js/viz-registry.js     — Visualization type registry (all chart/viz definitions)
 js/onboarding.js       — First-time user setup wizard
 js/utils.js            — Formatters, ID generation, helpers
 style.css              — Root styles, CSS variables, imports
@@ -43,6 +56,7 @@ css/components.css     — Buttons, cards, forms, gauges, progress bars
 css/shore.css          — Shore/beach scene CSS illustration
 css/sorting-room.css   — Sorting room (baskets, shelves, shells)
 css/cockpit.css        — Cockpit instruments (dials, switches, gauges)
+css/under-the-sea.css  — Under the Sea (panels, depth zones, bioluminescence)
 css/views.css          — View layout, nav bar, onboarding
 ```
 
@@ -53,14 +67,52 @@ css/views.css          — View layout, nav bar, onboarding
 - **Narrative**: Financial data maps to visual states (shell density, basket fill, gauge positions)
 - **Animations**: CSS keyframes + transitions; JS only toggles classes
 - **Instruments**: All cockpit gauges/dials drawn with CSS (circles, gradients, transforms for needles)
+- **Viz registry**: Each visualization type is a self-contained registry entry with default filters, supported filters, and an insight generator function. New types can be added without schema changes.
 
 ## Data Model
 
-localStorage key: `abunda-data`. Schema includes:
-- `budget` — monthlyIncome, monthlyBudget, categories (each with id, name, color, icon, budgetAmount)
-- `transactions` — array of { id, type, amount, categoryId, note, date }
-- `goals` — array (for future Room 3)
-- `onboardingComplete` — boolean flag
+localStorage key: `abunda-data`. Full schema:
+
+```js
+{
+  version: 1,
+  onboardingComplete: false,
+  createdAt: 'ISO8601',
+
+  budget: {
+    monthlyIncome: 4000,
+    categories: [
+      { id, name, color, icon, budgetAmount, isSavings }
+      // isSavings: true only on the required Savings category
+    ],
+  },
+
+  transactions: [
+    { id, type, amount, categoryId, note, date, createdAt }
+    // type: 'expense' | 'income'
+    // categoryId: null for income transactions
+  ],
+
+  forecasts: [
+    { id, name, amount, categoryId, frequency, nextDueDate, active }
+    // frequency: 'monthly' | 'weekly' | 'biweekly' | 'yearly'
+    // forecasts are never auto-posted; actuals are always manually logged
+  ],
+
+  dashboard: {
+    panels: [
+      { id, type, title, position, size, filters }
+      // type matches a key in the viz registry
+      // size: 'small' | 'medium' | 'large'
+    ],
+  },
+
+  goals: [], // reserved for Room 3 (Planning)
+}
+```
+
+See `docs/financial-requirements.md` for calculation definitions (effectiveIncome, savingsRate, onTrack, etc.).
+See `docs/display-requirements.md` for all visualization types, filter options, and Under the Sea design.
 
 ## Code Style
 
@@ -81,5 +133,7 @@ Keep JS files under 300 lines. Split only when there is clear separation of conc
 2. State management & onboarding (data layer, first-time setup wizard)
 3. The Shore — animated beach home view
 4. The Sorting Room — budget tracking with basket metaphor
-5. The Cockpit — financial dashboard with analog instruments
-6. Polish & settings
+5. The Cockpit — financial awareness with analog instruments
+6. Under the Sea — composable insight dashboard
+7. Room 3 (Planning) — savings goals and forecast-based projections
+8. Polish & settings
