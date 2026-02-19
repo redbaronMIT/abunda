@@ -158,6 +158,7 @@ gh pr merge --squash              # merge when ready
 ```
 
 Branch naming conventions:
+
 - `feat/` — new features
 - `fix/` — bug fixes
 - `docs/` — documentation only
@@ -165,6 +166,7 @@ Branch naming conventions:
 ## Git Hooks
 
 Husky runs on two events:
+
 - **pre-commit**: `npm run format` then `npm run lint`
 - **pre-push**: format + lint, then blocks push if on `main`
 

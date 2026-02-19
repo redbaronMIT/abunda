@@ -63,6 +63,7 @@ The user places objects on the map canvas. Two types exist:
 A waypoint is a point along the route with an optional financial goal attached. Waypoints are the primary data-connected object — they determine how far the ship has traveled.
 
 **Properties:**
+
 - Position on map (x, y)
 - Label (user-defined, e.g. "Pay off car loan")
 - Goal type: `savings` | `debt` | `custom` | none
@@ -71,12 +72,14 @@ A waypoint is a point along the route with an optional financial goal attached. 
 - Data link (future: link to a specific category)
 
 **Ship position logic:**
+
 - If a waypoint has a `targetValue`: progress = `actualValue / targetValue` (clamped 0–1)
 - If a waypoint has only a `targetDate`: progress = `daysElapsed / totalDays` (clamped 0–1)
 - If a waypoint has neither: waypoint is decorative — ship passes it at user-defined progress
 - Ship is interpolated along the path between waypoints proportionally to progress
 
 **Example:**
+
 > "Save $10,000 for emergency fund" — targetValue: 10000
 > User has saved $4,200 → ship is 42% of the way from previous waypoint to this one
 
@@ -85,6 +88,7 @@ A waypoint is a point along the route with an optional financial goal attached. 
 Freeform elements with no automatic data connection. The user defines what they mean.
 
 **Properties:**
+
 - Position on map (x, y)
 - Icon (from a picker — anchor, house, star, flag, etc.)
 - Label
@@ -118,13 +122,13 @@ Freeform elements with no automatic data connection. The user defines what they 
 
 Multiple maps can coexist on the table:
 
-| Action | How |
-|--------|-----|
-| Create | Click parchment roll in corner |
-| Move | Drag map by its title bar |
-| Resize | Drag corner handle |
-| Layer | Maps have a z-index; clicking a map brings it to front |
-| Remove | Click ✕ button on map (with confirmation) |
+| Action | How                                                    |
+| ------ | ------------------------------------------------------ |
+| Create | Click parchment roll in corner                         |
+| Move   | Drag map by its title bar                              |
+| Resize | Drag corner handle                                     |
+| Layer  | Maps have a z-index; clicking a map brings it to front |
+| Remove | Click ✕ button on map (with confirmation)              |
 
 ---
 
@@ -206,13 +210,13 @@ captainsMaps: [
 
 ## Navigation Order (5 Rooms)
 
-| Position | Room | Icon | Purpose |
-|----------|------|------|---------|
-| 1 | Shore | Wave | Daily snapshot |
-| 2 | Sorting Room | Basket | Log expenses |
-| 3 | **Captain's Maps** | **Ship's wheel** | **Life planning** |
-| 4 | Cockpit | Compass dial | Financial awareness |
-| 5 | Under the Sea | Coral | Deep data exploration |
+| Position | Room               | Icon             | Purpose               |
+| -------- | ------------------ | ---------------- | --------------------- |
+| 1        | Shore              | Wave             | Daily snapshot        |
+| 2        | Sorting Room       | Basket           | Log expenses          |
+| 3        | **Captain's Maps** | **Ship's wheel** | **Life planning**     |
+| 4        | Cockpit            | Compass dial     | Financial awareness   |
+| 5        | Under the Sea      | Coral            | Deep data exploration |
 
 ---
 
@@ -231,5 +235,6 @@ captainsMaps: [
 ## Implementation Phase
 
 Phase 7 (after Under the Sea). Dependencies:
+
 - Sorting Room must exist (transaction data feeds waypoint progress)
 - State layer must support `captainsMaps[]` array
