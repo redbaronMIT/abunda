@@ -73,7 +73,9 @@ export function deleteTransaction(id) {
 }
 
 export function addSubscription(sub) {
-  if (!appState.subscriptions) {appState.subscriptions = [];}
+  if (!appState.subscriptions) {
+    appState.subscriptions = [];
+  }
   const entry = {
     id: generateId('sub'),
     createdAt: new Date().toISOString(),
@@ -86,7 +88,9 @@ export function addSubscription(sub) {
 }
 
 export function deleteSubscription(id) {
-  if (!appState.subscriptions) {return;}
+  if (!appState.subscriptions) {
+    return;
+  }
   appState.subscriptions = appState.subscriptions.filter((s) => s.id !== id);
   saveState();
 }

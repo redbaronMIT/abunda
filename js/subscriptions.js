@@ -37,8 +37,7 @@ export function renderSubscriptions() {
 }
 
 function renderSubItem(sub) {
-  const suffix =
-    sub.frequency === 'monthly' ? '/mo' : sub.frequency === 'weekly' ? '/wk' : '/yr';
+  const suffix = sub.frequency === 'monthly' ? '/mo' : sub.frequency === 'weekly' ? '/wk' : '/yr';
   const monthly = toMonthly(sub);
   const showMonthly = sub.frequency !== 'monthly';
   return `
@@ -69,7 +68,9 @@ export function wireSubscriptions(container) {
       const name = String(fd.get('name')).trim();
       const amount = parseFloat(String(fd.get('amount')));
       const frequency = String(fd.get('frequency'));
-      if (!name || isNaN(amount) || amount <= 0) {return;}
+      if (!name || isNaN(amount) || amount <= 0) {
+        return;
+      }
       addSubscription({ name, amount, frequency });
       rerenderSubs(container);
     });
@@ -122,7 +123,9 @@ function normalizeName(name) {
 }
 
 function similarity(a, b) {
-  if (!a.length || !b.length) {return 0;}
+  if (!a.length || !b.length) {
+    return 0;
+  }
   return 1 - levenshtein(a, b) / Math.max(a.length, b.length);
 }
 
@@ -130,7 +133,7 @@ function levenshtein(a, b) {
   const m = a.length;
   const n = b.length;
   const dp = Array.from({ length: m + 1 }, (_, i) =>
-    Array.from({ length: n + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0)),
+    Array.from({ length: n + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
   );
   for (let i = 1; i <= m; i++) {
     for (let j = 1; j <= n; j++) {
@@ -144,8 +147,12 @@ function levenshtein(a, b) {
 }
 
 function toMonthly(sub) {
-  if (sub.frequency === 'weekly') {return (sub.amount * 52) / 12;}
-  if (sub.frequency === 'yearly') {return sub.amount / 12;}
+  if (sub.frequency === 'weekly') {
+    return (sub.amount * 52) / 12;
+  }
+  if (sub.frequency === 'yearly') {
+    return sub.amount / 12;
+  }
   return sub.amount;
 }
 

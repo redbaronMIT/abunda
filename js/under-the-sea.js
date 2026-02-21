@@ -51,8 +51,12 @@ function renderView(container) {
 function groupExpenses(period) {
   const now = new Date();
   const expenses = (appState.transactions || []).filter((t) => t.type === 'expense');
-  if (period === '30d') {return groupByDay(expenses, now, 30);}
-  if (period === '3m') {return groupByWeek(expenses, now, 13);}
+  if (period === '30d') {
+    return groupByDay(expenses, now, 30);
+  }
+  if (period === '3m') {
+    return groupByWeek(expenses, now, 13);
+  }
   return groupByMonth(expenses, now, 12);
 }
 
@@ -66,7 +70,9 @@ function groupByDay(expenses, now, count) {
   expenses.forEach((t) => {
     const key = (t.date || t.createdAt).slice(0, 10);
     const bucket = buckets.find((bk) => bk.key === key);
-    if (bucket) {bucket.total += t.amount;}
+    if (bucket) {
+      bucket.total += t.amount;
+    }
   });
   return buckets;
 }
@@ -76,7 +82,12 @@ function groupByWeek(expenses, now, count) {
   for (let i = count - 1; i >= 0; i--) {
     const d = new Date(now);
     d.setDate(d.getDate() - i * 7);
-    buckets.push({ label: `Wk ${count - i}`, key: d.toISOString().slice(0, 10), endKey: '', total: 0 });
+    buckets.push({
+      label: `Wk ${count - i}`,
+      key: d.toISOString().slice(0, 10),
+      endKey: '',
+      total: 0,
+    });
   }
   for (let i = 0; i < buckets.length; i++) {
     buckets[i].endKey =
@@ -107,7 +118,9 @@ function groupByMonth(expenses, now, count) {
   expenses.forEach((t) => {
     const key = (t.date || t.createdAt).slice(0, 7);
     const bucket = buckets.find((bk) => bk.key === key);
-    if (bucket) {bucket.total += t.amount;}
+    if (bucket) {
+      bucket.total += t.amount;
+    }
   });
   return buckets;
 }
@@ -156,7 +169,9 @@ function buildChart(data) {
 
 function expenseInsight(data) {
   const total = data.reduce((s, d) => s + d.total, 0);
-  if (total === 0) {return 'No expenses recorded in this period.';}
+  if (total === 0) {
+    return 'No expenses recorded in this period.';
+  }
   const nonZero = data.filter((d) => d.total > 0);
   const peak = data.reduce((a, b) => (a.total >= b.total ? a : b));
   return `Total: ${formatCurrency(total)} across ${nonZero.length} ${nonZero.length === 1 ? 'period' : 'periods'}. Peak: ${peak.label} (${formatCurrency(peak.total)}).`;
