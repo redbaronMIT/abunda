@@ -22,6 +22,7 @@ function createDefaultState() {
     },
     transactions: [],
     goals: [],
+    subscriptions: [],
   };
 }
 
@@ -68,6 +69,25 @@ export function addTransaction(transaction) {
 
 export function deleteTransaction(id) {
   appState.transactions = appState.transactions.filter((t) => t.id !== id);
+  saveState();
+}
+
+export function addSubscription(sub) {
+  if (!appState.subscriptions) {appState.subscriptions = [];}
+  const entry = {
+    id: generateId('sub'),
+    createdAt: new Date().toISOString(),
+    active: true,
+    ...sub,
+  };
+  appState.subscriptions.push(entry);
+  saveState();
+  return entry;
+}
+
+export function deleteSubscription(id) {
+  if (!appState.subscriptions) {return;}
+  appState.subscriptions = appState.subscriptions.filter((s) => s.id !== id);
   saveState();
 }
 

@@ -1,0 +1,277 @@
+/* Under the Sea — Expense Chart + Subscription Tracker */
+
+.uts-wrapper {
+  padding: var(--space-md) var(--space-md) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.uts-header {
+  text-align: center;
+  padding-top: var(--space-md);
+}
+
+.uts-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--color-shell-gold);
+  margin-bottom: var(--space-xs);
+}
+
+.uts-subtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
+}
+
+.uts-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.uts-section-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.uts-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Period tabs */
+
+.period-tabs {
+  display: flex;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.period-tab {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+  font-family: var(--font-ui);
+}
+
+.period-tab.is-active {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-foam);
+}
+
+/* Expense chart (SVG) */
+
+.expense-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.chart-grid {
+  stroke: rgba(255, 255, 255, 0.07);
+  stroke-width: 1;
+}
+
+.chart-bar {
+  fill: var(--color-ocean-light);
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+  cursor: default;
+}
+
+.chart-bar:hover {
+  opacity: 1;
+}
+
+.chart-bar--empty {
+  fill: rgba(255, 255, 255, 0.07);
+  opacity: 1;
+}
+
+.chart-lbl {
+  font-size: 9px;
+  fill: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-ui);
+}
+
+.chart-lbl--y {
+  font-size: 9px;
+}
+
+.chart-insight {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Subscription list */
+
+.sub-monthly-total {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-shell-gold);
+}
+
+.sub-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sub-empty {
+  color: rgba(255, 255, 255, 0.25);
+  font-style: italic;
+  font-size: 13px;
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+.sub-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.sub-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.sub-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.sub-amount {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-shell-gold);
+}
+
+.sub-monthly {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.sub-delete-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color var(--transition-fast);
+}
+
+.sub-delete-btn:hover {
+  color: var(--color-coral);
+}
+
+/* Subscription alerts */
+
+.sub-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sub-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.sub-alert--duplicate {
+  background: rgba(240, 192, 96, 0.1);
+  border: 1px solid rgba(240, 192, 96, 0.3);
+  color: var(--color-shell-gold);
+}
+
+.sub-alert--similar {
+  background: rgba(91, 164, 208, 0.1);
+  border: 1px solid rgba(91, 164, 208, 0.25);
+  color: var(--color-ocean-light);
+}
+
+.sub-alert-icon {
+  font-size: 13px;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.sub-alert-msg {
+  flex: 1;
+}
+
+/* Add subscription form */
+
+.sub-add-form {
+  padding-top: var(--space-xs);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.sub-add-fields {
+  display: grid;
+  grid-template-columns: 1fr 100px 110px auto;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.sub-input {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 13px;
+}
+
+.sub-add-btn {
+  padding: var(--space-xs) var(--space-md);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .sub-add-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sub-add-btn {
+    grid-column: span 2;
+  }
+}

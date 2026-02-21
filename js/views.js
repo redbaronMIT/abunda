@@ -1,4 +1,4 @@
-const VIEWS = ['onboarding', 'shore', 'sorting-room', 'cockpit'];
+const VIEWS = ['onboarding', 'shore', 'sorting-room', 'cockpit', 'under-the-sea'];
 
 let currentView = null;
 

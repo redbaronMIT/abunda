@@ -4,6 +4,7 @@ import { initOnboarding } from './onboarding.js';
 import { initShore } from './shore.js';
 import { initSortingRoom } from './sorting-room.js';
 import { initCockpit } from './cockpit.js';
+import { initUnderTheSea } from './under-the-sea.js';
 
 function boot() {
   loadState();
@@ -16,6 +17,7 @@ function boot() {
     initShore();
     initSortingRoom();
     initCockpit();
+    initUnderTheSea();
     showTabBar();
     showView('shore');
   }
